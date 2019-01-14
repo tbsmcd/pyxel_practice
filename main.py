@@ -130,22 +130,23 @@ class App:
 
         for i in range(len(self.Zombies)):
             # ゾンビがビールに近づく
-            rand_int = random.randrange(10)
-            if self.Zombies[i].pos.x == self.beer.pos.x \
-                or (self.Zombies[i].pos.y != self.beer.pos.y and rand_int % 2 == 0):
-                # Y軸方向に動く
-                new_zombie_x = self.Zombies[i].pos.x
-                if self.Zombies[i].pos.y > self.beer.pos.y:
-                    new_zombie_y = self.Zombies[i].pos.y - 1
+            if random.randrange(9) % 3 == 0:
+                rand_int = random.randrange(10)
+                if self.Zombies[i].pos.x == self.beer.pos.x or\
+                        (self.Zombies[i].pos.y != self.beer.pos.y and rand_int % 2 == 0):
+                    # Y軸方向に動く
+                    new_zombie_x = self.Zombies[i].pos.x
+                    if self.Zombies[i].pos.y > self.beer.pos.y:
+                        new_zombie_y = self.Zombies[i].pos.y - 1
+                    else:
+                        new_zombie_y = self.Zombies[i].pos.y + 1
                 else:
-                    new_zombie_y = self.Zombies[i].pos.y + 1
-            else:
-                new_zombie_y = self.Zombies[i].pos.y
-                if self.Zombies[i].pos.x > self.beer.pos.x:
-                    new_zombie_x = self.Zombies[i].pos.x - 1
-                else:
-                    new_zombie_x = self.Zombies[i].pos.x + 1
-            self.Zombies[i].update(new_zombie_x, new_zombie_y, self.beer.vec_x)
+                    new_zombie_y = self.Zombies[i].pos.y
+                    if self.Zombies[i].pos.x > self.beer.pos.x:
+                        new_zombie_x = self.Zombies[i].pos.x - 1
+                    else:
+                        new_zombie_x = self.Zombies[i].pos.x + 1
+                self.Zombies[i].update(new_zombie_x, new_zombie_y, self.beer.vec_x)
 
             # ビールとゾンビの当たり判定
             if (
