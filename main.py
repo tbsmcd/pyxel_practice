@@ -2,7 +2,6 @@
 import pyxel
 import random
 
-# 定義値
 WINDOW_W = 160
 WINDOW_H = 120
 BEER_W = 16
@@ -130,6 +129,7 @@ class App:
 
         for i in range(len(self.Zombies)):
             # ゾンビがビールに近づく
+            # 動く確率1/3で気持ち悪さを出す
             if random.randrange(9) % 3 == 0:
                 rand_int = random.randrange(10)
                 if self.Zombies[i].pos.x == self.beer.pos.x or\
